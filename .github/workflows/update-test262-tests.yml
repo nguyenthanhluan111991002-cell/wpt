@@ -20,8 +20,7 @@ jobs:
           repository: tc39/test262
           path: test262-spec
       - name: Copy Test262 tests to WPT
-        working-directory: wpt
-        run: ./.github/update-test262.sh ../test262-spec
+        run: wpt/tools/ci/update-test262.sh $(pwd)/test262-spec
       - name: Commit changes
         id: commit
         continue-on-error: true
@@ -40,11 +39,12 @@ jobs:
           BRANCH_PREFIX: "test262-update"
           COMMIT_TITLE: "Update Test262 tests"
       - name: Create PR
+        # Check outcome for success as continue-on-error will mask failure.
         if: ${{ steps.commit.outcome == 'success' }}
         run: |
           cd wpt
           git push --set-upstream origin $BRANCH_NAME
-          gh pr create --title "$COMMIT_TITLE" --body "$PR_BODY"
+          gh pr create --title "$COMMIT_TITLE" --body "$PR_BODY" --reviewer jcscottiii
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           COMMIT_TITLE: "Update Test262 tests"
