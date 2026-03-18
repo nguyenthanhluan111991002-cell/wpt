@@ -1,6 +1,6 @@
 # Test262 Harness Integration
 
-This directory contains the WPT-specific infrastructure for running the [TC39 Test262](https://github.com/tc39/test262) suite within the Web Platform Tests framework. 
+This directory contains the WPT-specific infrastructure for running the [TC39 Test262](https://github.com/tc39/test262) suite within the Web Platform Tests framework.
 
 ## Overview
 
