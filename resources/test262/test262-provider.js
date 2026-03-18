@@ -143,6 +143,10 @@ function installAPI(global) {
           }
           const w = new Worker(URL.createObjectURL(new Blob([workerScript(script)], {type: 'text/javascript'})));
           w.index = workers.length;
+          w.reports = [];
+          w.onmessage = function(e) {
+            w.reports.push(e.data);
+          };
           w.postMessage({kind: 'start', i32a: i32a, index: w.index});
           workers.push(w);
         },
@@ -164,7 +168,10 @@ function installAPI(global) {
         getReport() {
           for (const w of workers) {
             while (Atomics.load(i32a, WORKER_REPORT_LOC + w.index) > 0) {
-              pendingReports.push(w.getMessage());
+              const msg = w.reports.shift();
+              if (msg !== undefined) {
+                  pendingReports.push(msg);
+              }
               Atomics.sub(i32a, WORKER_REPORT_LOC + w.index, 1);
             }
           }
@@ -183,10 +190,25 @@ function installAPI(global) {
     })(),
     global: global
   };
-  global.$DONE = function() {}
+
+  // Ensure print is available in this realm if it's available in the parent
+  if (typeof global.print === 'undefined' && typeof window.print === 'function') {
+      global.print = window.print;
+  }
+
+  global.$DONE = function(err) {
+    if (err) {
+      if (typeof global.print === 'function') {
+        global.print('Test262:AsyncTestFailure: ' + err);
+      }
+    } else {
+      if (typeof global.print === 'function') {
+        global.print('Test262:AsyncTestComplete');
+      }
+    }
+  };
 
   return global.$262;
 }
 
 installAPI(window);
-

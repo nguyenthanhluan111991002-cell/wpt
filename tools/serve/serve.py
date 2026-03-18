@@ -333,8 +333,9 @@ class Test262WindowHandler(HtmlWrapperHandler):
     wrapper = """<!doctype html>
 <meta charset=utf-8>
 <title>Test</title>
-<script src="/resources/test262/testharness.js"></script>
+<script src="/resources/testharness.js"></script>
 <script src="/resources/testharnessreport.js"></script>
+<script src="/resources/test262/test262-harness-bridge.js"></script>
 %(meta)s
 %(script)s
 <div id=log></div>
@@ -359,40 +360,119 @@ class Test262WindowTestBaseHandler(HtmlWrapperHandler):
 <script src="/resources/test262/test262-provider.js"></script>
 %(meta)s
 %(script)s"""
+    # The base wrapper for Test262 tests.
+    # It injects the reporter, the Test262 harness, and the provider.
+    # %(done_script)s is dynamically populated: it's empty for 'async' tests
+    # (which must signal completion via print()) and contains the test262Done()
+    # call for standard tests.
     wrapper = pre_wrapper + """<body><script>test262Setup()</script>
 <script src="%(path)s"></script>
-<script>test262Done()</script></body>"""
+%(done_script)s</body>"""
 
     def _get_metadata(self, request):
         path = self._get_filesystem_path(request)
         with open(path, encoding='utf-8') as f:
             test_record = test262_parse(logging.getLogger(), f.read(), path)
+        if test_record is None:
+            return
+
+        # Include any harness files specified in the 'includes' frontmatter attribute.
+        # These are served from the third_party/test262/harness/ directory.
         yield from (('script', "/third_party/test262/harness/%s" % filename)
                     for filename in (test_record.includes or []))
 
-        expected_error = (test_record.negative or {}).get('type', None)
-        if expected_error is not None:
-            yield ('negative', expected_error)
+        # Pass negative test metadata (type and phase) to the reporter to enable validation.
+        if test_record.negative:
+            yield ("negative_type", test_record.negative.get("type"))
+            yield ("negative_phase", test_record.negative.get("phase"))
+
+        # If it's an async test, the harness must wait for a print() signal.
+        # Otherwise, we inject a test262Done() call to complete the test automatically.
+        if test_record.is_async:
+            yield ("is_async", "true")
+            yield ("done_script", "")
+            yield ("script", "/third_party/test262/harness/doneprintHandle.js")
+        else:
+            yield ("done_script", "<script>test262Done()</script>")
 
     def _meta_replacement(self, key: str, value: str) -> Optional[str]:
-        if key == 'negative':
-            return """<script>test262Negative('%s')</script>""" % value
+        # Translates metadata keys into reporter-side configuration calls.
+        if key == 'negative_type':
+            return """<script>test262NegativeType('%s')</script>""" % value
+        if key == 'negative_phase':
+            return """<script>test262NegativePhase('%s')</script>""" % value
+        if key == 'is_async':
+            return """<script>test262IsAsync(true)</script>"""
         return None
+
+    def handle_request(self, request, response):
+        # ... standard header handling ...
+        headers = self.headers + handlers.load_headers(
+            request, self._get_filesystem_path(request))
+        for header_name, header_value in headers:
+            response.headers.set(header_name, header_value)
+
+        self.check_exposure(request)
+
+        path = self._get_path(request.url_parts.path, True)
+        query = request.url_parts.query
+        if query:
+            query = "?" + query
+
+        # Collect all metadata, prioritizing the special 'done_script' for formatting.
+        meta_parts = []
+        kwargs = {"path": path, "query": query, "done_script": ""}
+        for key, value in self._get_metadata(request):
+            replacement = self._meta_replacement(key, value)
+            if replacement:
+                meta_parts.append(replacement)
+            # Ensure done_script is available for template formatting.
+            if key == "done_script":
+                kwargs["done_script"] = value
+
+        kwargs["meta"] = "\n".join(meta_parts)
+        kwargs["script"] = "\n".join(self._get_script(request))
+
+        # Format and serve the wrapped HTML.
+        response.content = self.wrapper % kwargs
+        wrap_pipeline(path, request, response)
 
 
 class Test262WindowTestHandler(Test262WindowTestBaseHandler):
+    # Handler for standard window tests.
     path_replace = [(".test262-test.html", ".js")]
 
 
 class Test262WindowModuleHandler(Test262WindowHandler):
+    # Landing page for module tests (wraps further).
     path_replace = [(".test262-module.html", ".js", ".test262-module-test.html")]
 
 class Test262WindowModuleTestHandler(Test262WindowTestBaseHandler):
+    # Specialized Handler for Test262 module tests using dynamic import().
     path_replace = [(".test262-module-test.html", ".js")]
-    wrapper = Test262WindowTestHandler.pre_wrapper + """<body>
+    wrapper = Test262WindowTestBaseHandler.pre_wrapper + """<body>
+<script>window.__test262IsModule = true;</script>
 <script type="module">
   test262Setup();
-  import("%(path)s").then(() => test262Done());
+  import("%(path)s").then(() => {
+    if (!window.test262Async) {
+      test262Done();
+    }
+  }).catch(error => {
+    // For module resolution/execution errors
+    if (window.onunhandledrejection) {
+        window.onunhandledrejection({ reason: error });
+    } else {
+        let type = 'error';
+        if (error && (error instanceof self.Test262Error || error.name === 'Test262Error')) {
+            type = 'fail';
+        }
+        window.parent.postMessage({
+            type: type,
+            message: error.message || error.toString()
+        }, '*');
+    }
+  });
 </script>
 </body>"""
 
