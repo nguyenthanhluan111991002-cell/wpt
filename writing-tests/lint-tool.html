@@ -174,6 +174,8 @@ which wptserve already adds to the boilerplate markup.</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">NON-EXISTENT-REF</span></code></dt><dd><p>Reference test with a non-existent ‘%s’ relationship reference: ‘%s’</p>
 </dd>
+<dt><code class="docutils literal notranslate"><span class="pre">NON-TEST-FILE-IN-WEB-FEATURES-FILE</span></code></dt><dd><p>The WEB_FEATURES.yml file references a non-test file: ‘%s’ in feature ‘%s’</p>
+</dd>
 <dt><code class="docutils literal notranslate"><span class="pre">OPEN-NO-MODE</span></code></dt><dd><p>File opened without providing an explicit mode (note: binary files must be read with ‘b’ in the mode flags)</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">PARSE-FAILED</span></code></dt><dd><p>Unable to parse file</p>
@@ -237,6 +239,8 @@ achieves the intended effect (e.g., a logging call)</p>
 <dt><code class="docutils literal notranslate"><span class="pre">W3C-TEST.ORG</span></code></dt><dd><p>Test-file line has the string <code class="docutils literal notranslate"><span class="pre">w3c-test.org</span></code></p>
 <strong>To fix:</strong><p>either replace the <code class="docutils literal notranslate"><span class="pre">w3c-test.org</span></code> string with the expression
 <code class="docutils literal notranslate"><span class="pre">{{host}}:{{ports[http][0]}}</span></code> or a generic hostname like <code class="docutils literal notranslate"><span class="pre">example.org</span></code></p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">WEB-FEATURES-FILE-IN-NON-TEST-DIRECTORY</span></code></dt><dd><p>WEB_FEATURES.yml is located in a non-test directory: ‘%s’</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">WEB-PLATFORM.TEST</span></code></dt><dd><p>Internal web-platform.test domain used</p>
 <strong>To fix:</strong><p>use <a class="reference external" href="https://web-platform-tests.org/writing-tests/server-pipes.html#sub">server-side substitution</a>,
