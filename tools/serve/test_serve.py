@@ -271,22 +271,37 @@ def test_path_replace(handler_setup, handler_cls, expected):
     (
         Test262WindowTestHandler,
         "/test262/basic.test262-test.html",
-        [('script', '/third_party/test262/harness/assert.js'), ('script', '/third_party/test262/harness/sta.js'), ('done_script', '<script>test262Done()</script>')]
+        [
+            ('script', '/third_party/test262/harness/assert.js'),
+            ('script', '/third_party/test262/harness/sta.js'),
+            ('done_script', '<script>test262Done()</script>'),
+        ]
     ),
     (
         Test262WindowTestHandler,
         "/test262/negative.test262-test.html",
-        [('negative_type', 'TypeError'), ('negative_phase', 'runtime'), ('done_script', '<script>test262Done()</script>')]
+        [
+            ('negative_type', 'TypeError'),
+            ('negative_phase', 'runtime'),
+            ('done_script', '<script>test262Done()</script>'),
+        ]
     ),
     (
         Test262WindowTestHandler,
         "/test262/async.test262-test.html",
-        [('is_async', 'true'), ('done_script', ''), ('script', '/third_party/test262/harness/doneprintHandle.js')]
+        [
+            ('is_async', 'true'),
+            ('done_script', ''),
+            ('script', '/third_party/test262/harness/doneprintHandle.js'),
+        ]
     ),
     (
         Test262StrictWindowTestHandler,
         "/test262/teststrict.test262-test.strict.html",
-        [('script', '/third_party/test262/harness/propertyHelper.js'), ('done_script', '<script>test262Done()</script>')]
+        [
+            ('script', '/third_party/test262/harness/propertyHelper.js'),
+            ('done_script', '<script>test262Done()</script>'),
+        ]
     ),
 ])
 def test_get_metadata(handler_setup, handler_cls, request_path, expected_metadata):
@@ -316,25 +331,40 @@ def test_get_metadata(handler_setup, handler_cls, request_path, expected_metadat
     (
         Test262WindowTestHandler,
         "/test262/basic.test262-test.html",
-        ['<script src="/test262/basic.js"></script>', '<script>test262Setup()</script>', '<script>test262Done()</script>']
+        [
+            '<script src="/test262/basic.js"></script>',
+            '<script>test262Setup()</script>',
+            '<script>test262Done()</script>',
+        ]
     ),
     # Test262WindowModuleTestHandler: Should contain module import
     (
         Test262WindowModuleTestHandler,
         "/test262/module.test262-module-test.html",
-        ['<script type="module">', 'test262Setup();', 'import("/test262/module.js")', 'test262Done()']
+        [
+            '<script type="module">',
+            'test262Setup();',
+            'import("/test262/module.js")',
+            'test262Done()',
+        ]
     ),
     # Verification of the 'negative' replacement in the HTML
     (
         Test262WindowTestHandler,
         "/test262/negative.test262-test.html",
-        ["<script>test262NegativeType('TypeError')</script>", "<script>test262NegativePhase('runtime')</script>"]
+        [
+            "<script>test262NegativeType('TypeError')</script>",
+            "<script>test262NegativePhase('runtime')</script>",
+        ]
     ),
     # Verification of the 'async' replacement in the HTML
     (
         Test262WindowTestHandler,
         "/test262/async.test262-test.html",
-        ["<script>test262IsAsync(true)</script>", '<script src="/third_party/test262/harness/doneprintHandle.js">']
+        [
+            "<script>test262IsAsync(true)</script>",
+            '<script src="/third_party/test262/harness/doneprintHandle.js">'
+        ]
     ),
     # Strict HTML Case: points to the .strict.js variant
     (
