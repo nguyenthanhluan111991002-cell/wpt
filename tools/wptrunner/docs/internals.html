@@ -100,7 +100,7 @@ returned value differs from that for the previous test, the browser is relaunche
 
 <dl class="py method">
 <dt class="sig sig-object py" id="wptrunner.browsers.base.Browser.start">
-<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">start</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">group_metadata</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Mapping" title="(in Python v3.14)"><span class="pre">Mapping</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.14)"><span class="pre">Any</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.14)"><span class="pre">Any</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#wptrunner.browsers.base.Browser.start" title="Link to this definition">¶</a></dt>
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">start</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">group_metadata</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#wptrunner.testloader.GroupMetadata" title="wptrunner.testloader.GroupMetadata"><span class="pre">GroupMetadata</span></a></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.14)"><span class="pre">Any</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#wptrunner.browsers.base.Browser.start" title="Link to this definition">¶</a></dt>
 <dd><p>Launch the browser object and get it into a state where is is ready to run tests</p>
 </dd></dl>
 
@@ -146,7 +146,7 @@ up the browser from the runner process.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="wptrunner.browsers.base.NullBrowser.start">
-<span class="sig-name descname"><span class="pre">start</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">group_metadata</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Mapping" title="(in Python v3.14)"><span class="pre">Mapping</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.14)"><span class="pre">Any</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.14)"><span class="pre">Any</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#wptrunner.browsers.base.NullBrowser.start" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">start</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">group_metadata</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#wptrunner.testloader.GroupMetadata" title="wptrunner.testloader.GroupMetadata"><span class="pre">GroupMetadata</span></a></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.14)"><span class="pre">Any</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#wptrunner.browsers.base.NullBrowser.start" title="Link to this definition">¶</a></dt>
 <dd><p>No-op browser to use in scenarios where the TestRunnerManager shouldn’t
 actually own the browser process (e.g. Servo where we start one browser
 per test)</p>
@@ -255,7 +255,7 @@ returned value differs from that for the previous test, the browser is relaunche
 
 <dl class="py method">
 <dt class="sig sig-object py" id="wptrunner.browsers.base.WebDriverBrowser.start">
-<span class="sig-name descname"><span class="pre">start</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">group_metadata</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Mapping" title="(in Python v3.14)"><span class="pre">Mapping</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.14)"><span class="pre">Any</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.14)"><span class="pre">Any</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#wptrunner.browsers.base.WebDriverBrowser.start" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">start</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">group_metadata</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#wptrunner.testloader.GroupMetadata" title="wptrunner.testloader.GroupMetadata"><span class="pre">GroupMetadata</span></a></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.14)"><span class="pre">Any</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#wptrunner.browsers.base.WebDriverBrowser.start" title="Link to this definition">¶</a></dt>
 <dd><p>Launch the browser object and get it into a state where is is ready to run tests</p>
 </dd></dl>
 
@@ -553,6 +553,11 @@ chunk.</p>
 </dd></dl>
 
 <dl class="py class">
+<dt class="sig sig-object py" id="wptrunner.testloader.GroupMetadata">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">wptrunner.testloader.</span></span><span class="sig-name descname"><span class="pre">GroupMetadata</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">scope</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'str'</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#wptrunner.testloader.GroupMetadata" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
 <dt class="sig sig-object py" id="wptrunner.testloader.HashChunker">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">wptrunner.testloader.</span></span><span class="sig-name descname"><span class="pre">HashChunker</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">total_chunks</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">chunk_number</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.14)"><span class="pre">Any</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#wptrunner.testloader.HashChunker" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
@@ -581,32 +586,8 @@ to initial criteria</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="wptrunner.testloader.TestGroup">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">wptrunner.testloader.</span></span><span class="sig-name descname"><span class="pre">TestGroup</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">group</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">subsuite</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metadata</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#wptrunner.testloader.TestGroup" title="Link to this definition">¶</a></dt>
-<dd><dl class="py attribute">
-<dt class="sig sig-object py" id="wptrunner.testloader.TestGroup.group">
-<span class="sig-name descname"><span class="pre">group</span></span><a class="headerlink" href="#wptrunner.testloader.TestGroup.group" title="Link to this definition">¶</a></dt>
-<dd><p>Alias for field number 0</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="wptrunner.testloader.TestGroup.metadata">
-<span class="sig-name descname"><span class="pre">metadata</span></span><a class="headerlink" href="#wptrunner.testloader.TestGroup.metadata" title="Link to this definition">¶</a></dt>
-<dd><p>Alias for field number 3</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="wptrunner.testloader.TestGroup.subsuite">
-<span class="sig-name descname"><span class="pre">subsuite</span></span><a class="headerlink" href="#wptrunner.testloader.TestGroup.subsuite" title="Link to this definition">¶</a></dt>
-<dd><p>Alias for field number 1</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="wptrunner.testloader.TestGroup.test_type">
-<span class="sig-name descname"><span class="pre">test_type</span></span><a class="headerlink" href="#wptrunner.testloader.TestGroup.test_type" title="Link to this definition">¶</a></dt>
-<dd><p>Alias for field number 2</p>
-</dd></dl>
-
-</dd></dl>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">wptrunner.testloader.</span></span><span class="sig-name descname"><span class="pre">TestGroup</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">test_queue</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'Deque[wpttest.Test]'</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">subsuite</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'Optional[str]'</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'str'</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metadata</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'GroupMetadata'</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#wptrunner.testloader.TestGroup" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="wptrunner.testloader.TestLoader">
@@ -620,6 +601,16 @@ to initial criteria</p>
 <dd></dd></dl>
 
 <dl class="py class" id="module-wptrunner.testrunner">
+<dt class="sig sig-object py" id="wptrunner.testrunner.BeforeInitState">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">wptrunner.testrunner.</span></span><span class="sig-name descname"><span class="pre">BeforeInitState</span></span><a class="headerlink" href="#wptrunner.testrunner.BeforeInitState" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="wptrunner.testrunner.ErrorState">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">wptrunner.testrunner.</span></span><span class="sig-name descname"><span class="pre">ErrorState</span></span><a class="headerlink" href="#wptrunner.testrunner.ErrorState" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
 <dt class="sig sig-object py" id="wptrunner.testrunner.ExecutorImplementation">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">wptrunner.testrunner.</span></span><span class="sig-name descname"><span class="pre">ExecutorImplementation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">executor_cls</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">executor_kwargs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">executor_browser_cls</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">executor_browser_kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#wptrunner.testrunner.ExecutorImplementation" title="Link to this definition">¶</a></dt>
 <dd><dl class="py attribute">
@@ -647,6 +638,11 @@ to initial criteria</p>
 </dd></dl>
 
 </dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="wptrunner.testrunner.InitializingState">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">wptrunner.testrunner.</span></span><span class="sig-name descname"><span class="pre">InitializingState</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">test_group</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#wptrunner.testloader.TestGroup" title="wptrunner.testloader.TestGroup"><span class="pre">wptrunner.testloader.TestGroup</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">test</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">wptrunner.wpttest.Test</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">failure_count</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#wptrunner.testrunner.InitializingState" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="wptrunner.testrunner.ManagerGroup">
@@ -680,10 +676,30 @@ default value indicates an indefinite timeout.</p>
 </dd></dl>
 
 <dl class="py class">
+<dt class="sig sig-object py" id="wptrunner.testrunner.RestartingState">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">wptrunner.testrunner.</span></span><span class="sig-name descname"><span class="pre">RestartingState</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">test_group</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#wptrunner.testloader.TestGroup" title="wptrunner.testloader.TestGroup"><span class="pre">wptrunner.testloader.TestGroup</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">test</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">wptrunner.wpttest.Test</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">force_stop</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#wptrunner.testrunner.RestartingState" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="wptrunner.testrunner.RunningState">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">wptrunner.testrunner.</span></span><span class="sig-name descname"><span class="pre">RunningState</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">test_group</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#wptrunner.testloader.TestGroup" title="wptrunner.testloader.TestGroup"><span class="pre">wptrunner.testloader.TestGroup</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">test</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">wptrunner.wpttest.Test</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#wptrunner.testrunner.RunningState" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
 <dt class="sig sig-object py" id="wptrunner.testrunner.StopFlag">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">wptrunner.testrunner.</span></span><span class="sig-name descname"><span class="pre">StopFlag</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">size</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#wptrunner.testrunner.StopFlag" title="Link to this definition">¶</a></dt>
 <dd><p>Synchronization for coordinating a graceful exit.</p>
 </dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="wptrunner.testrunner.StopState">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">wptrunner.testrunner.</span></span><span class="sig-name descname"><span class="pre">StopState</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">force_stop</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#wptrunner.testrunner.StopState" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="wptrunner.testrunner.SwitchingExecutorState">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">wptrunner.testrunner.</span></span><span class="sig-name descname"><span class="pre">SwitchingExecutorState</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">test_group</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#wptrunner.testloader.TestGroup" title="wptrunner.testloader.TestGroup"><span class="pre">wptrunner.testloader.TestGroup</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">test</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">wptrunner.wpttest.Test</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#wptrunner.testrunner.SwitchingExecutorState" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="wptrunner.testrunner.TestImplementation">
