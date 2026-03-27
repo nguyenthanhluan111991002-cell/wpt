@@ -1,0 +1,85 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>SoftNavigationEntry: Verify navigationId attributions for entries</title>
+<script src="/resources/testharness.js"></script>
+<script src="/resources/testharnessreport.js"></script>
+<script src="/resources/testdriver.js"></script>
+<script src="/resources/testdriver-vendor.js"></script>
+<script src="resources/soft-navigation-helper.js"></script>
+<style>
+  #shift-target {
+    width: 100px;
+    height: 100px;
+    background-color: blue;
+    position: absolute;
+    top: 50px;
+  }
+</style>
+</head>
+<body>
+  <main id=main>
+    <a id=link>Click me!</a>
+    <a id=soft_nav_link>Click for Soft Nav!</a>
+    <div id="shift-target"></div>
+  </main>
+  <script>
+    const clickTarget = document.getElementById("link");
+    clickTarget.addEventListener('click', async (e) => {
+      // 1. Add delay, to force a long event timing
+      const start = performance.now();
+      while (performance.now() - start < 120);
+
+      // 2. Trigger layout shift
+      const el = document.getElementById('shift-target');
+      el.style.top = (parseInt(el.style.top || 50, 10) + 50) + 'px';
+
+      // 3. Trigger an ICP entry for this interaction.
+      await addTextParagraphToMain("Text to trigger Interaction Contentful Paint");
+    });
+
+    async function simulateSoftNavAndGetNavId(t) {
+      const softNavLink = document.getElementById("soft_nav_link");
+      softNavLink.addEventListener('click', async (e) => {
+        await new Promise(r => t.step_timeout(r, 0));
+        // Must modify DOM or paint to trigger soft navigation heuristics!
+        await addTextParagraphToMain("Contentful paint to trigger soft NAV 1");
+        history.pushState({}, '', `foobar.html?${counter++}`);
+      }, {once: true});
+
+      let soft_nav_promise = getNextEntry('soft-navigation');
+      await test_driver.click(softNavLink);
+      let softNavEntry = await soft_nav_promise;
+
+      return softNavEntry.navigationId;
+    }
+
+    async function triggerPerformanceEntriesInNavigationSlice(expectedNavId) {
+      const eventPromise = getNextEntry('event');
+      const shiftPromise = getNextEntry('layout-shift');
+      const icpPromise = getNextEntry('interaction-contentful-paint');
+
+      await test_driver.click(clickTarget);
+
+      const eventEntry = await eventPromise;
+      const shiftEntry = await shiftPromise;
+      const icpEntry = await icpPromise;
+
+      assert_equals(eventEntry.navigationId, expectedNavId, "event navigationId should match expected navId");
+      assert_equals(shiftEntry.navigationId, expectedNavId, "layout shift navigationId should match expected navId");
+      assert_equals(icpEntry.navigationId, expectedNavId, "ICP navigationId should match expected navId");
+    }
+
+    promise_test(async t => {
+      const navId0 = performance.getEntriesByType('navigation')[0].navigationId;
+      await triggerPerformanceEntriesInNavigationSlice(navId0);
+      const navId1 = await simulateSoftNavAndGetNavId(t);
+      await triggerPerformanceEntriesInNavigationSlice(navId1);
+      const navId2 = await simulateSoftNavAndGetNavId(t);
+      await triggerPerformanceEntriesInNavigationSlice(navId2);
+
+    }, "Entries have navigationId properly attributed before and after soft navigation");
+  </script>
+</body>
+</html>
