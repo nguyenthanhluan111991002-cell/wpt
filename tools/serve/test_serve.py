@@ -323,7 +323,7 @@ def test_get_metadata(handler_setup, handler_cls, request_path, expected_metadat
         [
             '<script src="/resources/testharness.js"></script>',
             '<script src="/resources/testharnessreport.js"></script>',
-            '<script src="/resources/test262/test262-harness-bridge.js"></script>',
+            'window.test262HarnessDone = function(status, message)',
             '<iframe id="test262-iframe" src="/test262/basic.test262-test.html"></iframe>'
         ]
     ),

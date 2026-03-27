@@ -78,13 +78,7 @@
         }
 
         test_finished = true;
-        if (status === 0) {
-            parentWindow.postMessage({ type: 'complete' }, '*');
-        } else if (status === 1) {
-            parentWindow.postMessage({ type: 'fail', message: message }, '*');
-        } else {
-            parentWindow.postMessage({ type: 'error', message: message }, '*');
-        }
+        parentWindow.test262HarnessDone(status, message);
     }
     window.test262Done = done;
 
