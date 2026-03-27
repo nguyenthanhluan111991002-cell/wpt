@@ -173,6 +173,16 @@ def install_sdk(logger, paths):
     return True
 
 
+def write_config(logger, paths, config):
+    config_file_name = os.path.join(paths["avd"], "config.ini")
+
+    logger.info(f"Writing config at {config_file_name}")
+
+    with open(config_file_name, "a") as f:
+        for key, value in config.items():
+            f.write(f"{key}={value}\n")
+
+
 def install_android_packages(logger, paths, packages, prompt=True):
     sdk_manager = get_sdk_manager_path(paths)
     if not os.path.exists(sdk_manager):
@@ -261,10 +271,17 @@ def install(logger, dest=None, reinstall=False, prompt=True):
                         "build-tools;36.1.0",
                         "platforms;android-36.1",
                         "emulator"]
+            config = {
+                "hw.keyboard": "yes",
+                "hw.lcd.density": "320",
+                "disk.dataPartition.size": "8192MB",
+                "sdcard.size": "600M"
+            }
 
             install_android_packages(logger, paths, packages, prompt=prompt)
 
             install_avd(logger, paths, prompt=prompt)
+            write_config(logger, paths, config)
 
         emulator = get_emulator(paths)
     return emulator

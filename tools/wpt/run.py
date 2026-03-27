@@ -380,6 +380,7 @@ Consider installing certutil via your OS package manager or directly.""")
             else:
                 logger.warning("OpenH264 is not installed. Some tests may fail.")
 
+
 class FirefoxAndroid(BrowserSetup):
     name = "firefox_android"
     browser_cls = browser.FirefoxAndroid
