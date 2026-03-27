@@ -424,7 +424,6 @@ class Test262WindowTestBaseHandler(HtmlWrapperHandler):
         return None
 
     def handle_request(self, request, response):
-        # ... standard header handling ...
         headers = self.headers + handlers.load_headers(
             request, self._get_filesystem_path(request))
         for header_name, header_value in headers:
