@@ -46,15 +46,17 @@ def do_delayed_imports(paths):
             "-selinux",
             "permissive",
             "-memory",
-            "4096",
+            "3072",
             "-cores",
             "4",
             "-prop",
             "ro.test_harness=true",
+            "-gpu", "on",
             "-no-snapstorage",
             "-no-snapshot",
+            "-no-window",
             "-skin",
-            "800x1280"
+            "1080x1920"
         ],
         True,
     )
